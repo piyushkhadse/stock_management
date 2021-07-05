@@ -41,9 +41,7 @@ public class LocalEventStoreScheduler {
      */
     @Scheduled(fixedDelay = 1000, initialDelay = 1000)
     public void processLocalEvents() {
-        logger.info().log("Inside stock_management_processLocalEvents() scheduler");
         List<StockLocalEventStore> list = stockLocalEventRepositoryImpl.findBySent(false);
-        logger.info().log("Response of stock_management_processLocalEvents() scheduler {}", list);
         for (int i = 0; i < list.size(); i++) {
             publishAndUpdateLocalEvents(list.get(i));
         }
